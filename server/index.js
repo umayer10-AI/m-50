@@ -23,18 +23,19 @@ const run = async () => {
         await client.connect();
 
         const db = client.db("simpleCrud");
-        const UserCollection = database.collection("users");
+        const UserCollection = db.collection("users");
 
         app.get('/user', async(req,res) => {
             const cursor = UserCollection.find()
             const result = await cursor.toArray()
+            res.send(result)
         })
 
         await client.db("admin").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
     } 
     finally {
-        await client.close();
+        // await client.close();
     }
 }
 run().catch(console.dir)
