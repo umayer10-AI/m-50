@@ -2,6 +2,7 @@ import React from 'react';
 import { getUser } from '../lib/data';
 import UserDetail from '@/component/UserDetail';
 import { deleteUser } from '../lib/action';
+import ModalTask from '@/component/ModalTask';
 
 const page = async () => {
 
@@ -10,7 +11,10 @@ const page = async () => {
     return (
         <div>
             User management
-            <h2>Data: {data.length}</h2>
+            <div className='flex justify-center items-center gap-3'>
+                <h2>Data: {data.length}</h2>
+                <ModalTask></ModalTask>
+            </div>
             <UserDetail p={data} deleteUser={deleteUser}></UserDetail>
         </div>
     );
