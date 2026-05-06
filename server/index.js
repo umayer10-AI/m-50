@@ -41,6 +41,16 @@ const run = async () => {
             res.send(user)
         })
 
+        app.delete("user/:id", async (req,res) => {
+            const id = req.params.id
+            const query = {
+                _id: new ObjectId(id)
+            }
+            const result = await UserCollection.deleteOne(query)
+            console.log(result)
+        })
+
+
         await client.db("admin").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
     } 
